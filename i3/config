@@ -147,7 +147,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3status -c ~/.i3/i3status.conf
 }
 
 #setxkbmap -option caps:hyper
@@ -155,3 +155,10 @@ bar {
 #xmodmap -e "keycode 66 = Super_L"
 #
 #xmodmap -pm
+# Start the chromium-browser --incognito
+bindsym $mod+g exec chromium-browser --incognito
+
+exec sleep 0.5 && (/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & xfsettingsd & xfce4-power-manager & nm-applet & light-locker & /usr/lib/i386-linux-gnu/indicator-power/indicator-power-service & start-pulseaudio-x11 & )
+
+exec --no-startup-id feh --bg-scale ~/Pictures/debian_green_on_black.png
+
