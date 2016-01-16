@@ -14,6 +14,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font pango:Ubuntu 11
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
@@ -120,34 +121,73 @@ bindsym $mod+Shift+e exec  i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+	bindsym j resize shrink width 10 px or 10 ppt
+		bindsym k resize grow height 10 px or 10 ppt
+		bindsym l resize shrink height 10 px or 10 ppt
+		bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+		bindsym Left resize shrink width 10 px or 10 ppt
+		bindsym Down resize grow height 10 px or 10 ppt
+		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+# back to normal: Enter or Escape
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
+set $base00 #101218
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+#set $base0F #fcc09e
+set $base0F #00ff00
+
+set $poison-green #00ff00
+set $deep-dark #000000
+
+# Widow Colours
+#                         border  background text    indicator
+client.focused          $base01 $base01    $base07 $base0F
+client.focused_inactive $base02 $base02    $base03 $base0F
+client.unfocused        $base02 $base02    $base03 $base0F
+client.urgent           $base02 $base08    $base00 $base0F
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status -c ~/.i3/i3status.conf
+	position top
+	colors {
+		separator $base03
+			background #000000
+			statusline $base05
+#                        border  background text
+			focused_workspace  #00ff00 #00ff00    #000000
+			active_workspace   $base01 $base02    $base03
+			inactive_workspace #00ff00 #000000    #00ff00
+			urgent_workspace   $base01 $base01    $base08
+	}
+	status_command i3status -c ~/.i3/i3status.conf
 }
 
 #setxkbmap -option caps:hyper
@@ -158,7 +198,7 @@ bar {
 # Start the chromium-browser --incognito
 bindsym $mod+g exec chromium-browser --incognito
 
-exec sleep 0.5 && (/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & xfsettingsd & xfce4-power-manager & nm-applet & light-locker & /usr/lib/i386-linux-gnu/indicator-power/indicator-power-service & start-pulseaudio-x11 & )
+exec --no-startup-id sleep 0.5 && (/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & xfsettingsd & xfce4-power-manager & nm-applet & light-locker & /usr/lib/i386-linux-gnu/indicator-power/indicator-power-service & start-pulseaudio-x11 & )
 
-exec --no-startup-id feh --bg-scale ~/Pictures/debian_green_on_black.png
-
+exec_always feh --bg-scale ~/Pictures/debian_green_on_black.png
+exec_always compton -f
