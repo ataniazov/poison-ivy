@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+bindsym --whole-window $mod exec --no-startup-id xdotool mousemove 1600 900
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -166,11 +167,16 @@ set $base0F #00ff00
 set $poison-green #00ff00
 set $deep-dark #000000
 
+new_window pixel
+focus_follows_mouse no
+
+#new_float 1pixel
+
 # Widow Colours
 #                         border  background text    indicator
-client.focused          $base01 $base01    $base07 $base0F
-client.focused_inactive $base02 $base02    $base03 $base0F
-client.unfocused        $base02 $base02    $base03 $base0F
+client.focused		#00ff00 #00ff00    $000000 $base0F
+client.focused_inactive $base02 #00ff00    $base03 $base0F
+client.unfocused        #000000 #000000    $base03 $base0F
 client.urgent           $base02 $base08    $base00 $base0F
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -178,7 +184,7 @@ client.urgent           $base02 $base08    $base00 $base0F
 bar {
 	position top
 	colors {
-		separator $base03
+		separator #00ff00
 			background #000000
 			statusline $base05
 #                        border  background text
@@ -187,7 +193,8 @@ bar {
 			inactive_workspace #00ff00 #000000    #00ff00
 			urgent_workspace   $base01 $base01    $base08
 	}
-	status_command i3status -c ~/.i3/i3status.conf
+	#status_command i3status -c ~/.i3/i3status.conf
+	status_command ~/conky-i3bar
 }
 
 #xmodmap -e "remove lock = Caps_Lock"
@@ -205,4 +212,4 @@ exec_always setxkbmap -layout "us(dvorak),tr" -option "grp:alt_shift_toggle,grp_
 
 exec_always feh --bg-scale ~/Pictures/debian_green_on_black.png
 
-exec_always compton -f
+#exec_always compton -f
