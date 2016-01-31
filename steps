@@ -1,21 +1,60 @@
 # Disable Journalling on ext4
-# When creating ext4 partition disable journalling
-mkfs.ext4 -O ^has_journal /dev/sda10
-mke2fs -t ext4 -O ^has_journal /dev/sda10
-#tune2fs -o journal_data_writeback /dev/sda10
-
 tune2fs -O ^has_journal /dev/sda10
 e2fsck -f /dev/sda10
 dumpe2fs /dev/sda10 |more
 
+# When creating ext4 partition disable journalling:
+mkfs.ext4 -O ^has_journal /dev/sda10
+mke2fs -t ext4 -O ^has_journal /dev/sda10
+
+# To enable writeback option:
+tune2fs -o journal_data_writeback /dev/sda10
+
 # Making & Configure tmpfs
 
-tmpfs	/home/user/.cache/chromium	tmpfs	noatime,nodiratime,nodev,nosuid,uid=1000,gid=1000,mode=0700,size=2000M	0	0
-tmpfs	/home/user/.config/chromium	tmpfs	noatime,nodiratime,nodev,nosuid,uid=1000,gid=1000,mode=0700,size=2000M	0	0
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sdc1 during installation
+UUID=74e6f36f-133e-45b3-ba8c-e1627ecec776 /               ext4    noatime,nodiratime,errors=remount-ro 0       1
+/dev/sr0        /media/cdrom0   udf,iso9660 user,noauto     0       0
+
+# tmpfs
+tmpfs  /tmp  tmpfs defaults,noatime,nodiratime,mode=1777,size=50%  0  0
+tmpfs  /var/log  tmpfs  defaults,noatime,nodiratime,size=10000000  0  0
 
 # Browsers cache on tmpfs
 
-chromium --incognito --disk-cache-dir=/home/user/.chrome/ramdisk
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+for d in fsck apt fsck installer lightdm; do
+  [ -d /var/log/$d ] || mkdir /var/log/$d
+done
+
+USERNAME=delta
+DIR=/tmp/$USERNAME/.cache
+
+sudo -u $USERNAME -- sh -c "mkdir -p $DIR && chmod -R 700 /tmp/$USERNAME"
+
+rm -rf /home/$USERNAME/.cache
+ln -s /tmp/$USERNAME/.cache /home/$USERNAME/.cache
+
+exit 0
 
 #For more performance add fstab opions: data=writeback,noatime,nodiratime
 /dev/sda10 /opt ext4 defaults,data=writeback,noatime,nodiratime 0 0
