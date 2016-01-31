@@ -43,7 +43,7 @@ tmpfs  /var/log  tmpfs  defaults,noatime,nodiratime,size=10000000  0  0
 # By default this script does nothing.
 
 for d in fsck apt fsck installer lightdm; do
-  [ -d /var/log/$d ] || mkdir /var/log/$d
+[ -d /var/log/$d ] || mkdir /var/log/$d
 done
 
 USERNAME=delta
@@ -87,7 +87,7 @@ sudo apt-get install zathura zathura-djvu zathura-pdf-poppler mupdf
 sudo apt-get install p7zip-full p7zip-rar rar unrar zip unzip
 
 # Fonts
-sudo apt-get install ttf-mscorefonts-installer ttf-xfree86-nonfree ttf-dejavu
+sudo apt-get install ttf-mscorefonts-installer ttf-xfree86-nonfree ttf-dejavu xfonts-terminus xfonts-terminus-oblique
 
 # Multimedia
 sudo apt-get install youtube-dl
