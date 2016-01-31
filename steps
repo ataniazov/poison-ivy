@@ -1,3 +1,4 @@
+***************************************************
 # Disable Journalling on ext4
 tune2fs -O ^has_journal /dev/sda10
 e2fsck -f /dev/sda10
@@ -9,9 +10,10 @@ mke2fs -t ext4 -O ^has_journal /dev/sda10
 
 # To enable writeback option:
 tune2fs -o journal_data_writeback /dev/sda10
+***************************************************
 
 # Making & Configure tmpfs
-
+********************************************************************************************************
 # /etc/fstab: static file system information.
 #
 # Use 'blkid' to print the universally unique identifier for a
@@ -27,8 +29,10 @@ UUID=74e6f36f-133e-45b3-ba8c-e1627ecec776 /               ext4    noatime,nodira
 tmpfs  /tmp  tmpfs defaults,noatime,nodiratime,mode=1777,size=50%  0  0
 tmpfs  /var/log  tmpfs  defaults,noatime,nodiratime,size=10000000  0  0
 
-# Browsers cache on tmpfs
+********************************************************************************************************
 
+# Browsers cache on tmpfs
+**********************************************************************
 #!/bin/sh -e
 #
 # rc.local
@@ -56,11 +60,13 @@ ln -s /tmp/$USERNAME/.cache /home/$USERNAME/.cache
 
 exit 0
 
+***********************************************************************
+
 #For more performance add fstab opions: data=writeback,noatime,nodiratime
 /dev/sda10 /opt ext4 defaults,data=writeback,noatime,nodiratime 0 0
 
 # Add contrib and non-free repositories
-
+**********************************************************************************************************************************
 # deb cdrom:[Debian GNU/Linux stretch-DI-alpha5 _Stretch_ - Official Snapshot amd64 NETINST Binary-1 20160108-10:53]/ stretch main
 
 #deb cdrom:[Debian GNU/Linux stretch-DI-alpha5 _Stretch_ - Official Snapshot amd64 NETINST Binary-1 20160108-10:53]/ stretch main
@@ -70,6 +76,8 @@ deb-src http://ftp.de.debian.org/debian/ stretch main contrib non-free
 
 deb http://security.debian.org/debian-security stretch/updates main contrib non-free
 deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free
+
+**********************************************************************************************************************************
 
 # Non-free firmware
 sudo apt-get install firmware-linux firmware-linux-free firmware-linux-nonfree
@@ -92,14 +100,17 @@ sudo apt-get install ttf-mscorefonts-installer ttf-xfree86-nonfree ttf-dejavu xf
 # Multimedia
 sudo apt-get install youtube-dl
 
-# iPhone mtp connect
+# iPhone & Android mtp connect
 sudo apt-get install libimobiledevice-utils gvfs-backends gvfs-bin gvfs-fuse
 
 # Install chromium and pepperflashplugin-nonfree
 sudo apt-get install chromium pepperflashplugin-nonfree
 
 # Development
-sudo apt-get install git
+sudo apt-get install git gcc
+
+# Office
+sudo apt-get install libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-gtk libreoffice-style-breeze
 
 # vi-like behaviour (Do Not install)
 NetHack
@@ -122,3 +133,4 @@ xscreensaver
 
 # Warning: Do Not Remove this packages:
 xfce4-appfinder
+
