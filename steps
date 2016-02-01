@@ -134,3 +134,5 @@ xscreensaver
 # Warning: Do Not Remove this packages:
 xfce4-appfinder
 
+# System Info Beautiful Output
+screenfetch
