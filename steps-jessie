@@ -1,0 +1,27 @@
+#1. Edit /etc/apt/sources.list
+
+****************************************************************************************************************************
+#deb cdrom:[Debian GNU/Linux 8.3.0 _Jessie_ - Official Multi-architecture amd64/i386 NETINST #1 20160123-22:16]/ jessie main
+
+deb http://ftp.de.debian.org/debian/ jessie main contrib non-free
+deb-src http://ftp.de.debian.org/debian/ jessie main contrib non-free
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.de.debian.org/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.de.debian.org/debian/ jessie-updates main contrib non-free
+
+# jessie-backports
+deb http://http.debian.net/debian jessie-backports main contrib non-free
+****************************************************************************************************************************
+
+#2. Update, upgrade, dist-upgrade, autoremove, autoclean, clean
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo apt-get autoremove
+sudo apt-get autoclean
+sudo apt-get clean
+
