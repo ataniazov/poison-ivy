@@ -40,6 +40,7 @@ bindsym $mod+minus kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run -nb black -nf green -sb green -sf black
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -76,7 +77,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -129,26 +130,26 @@ bindsym $mod+Shift+e exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
+        # These bindings trigger as soon as you enter the resize mode
 
-# Pressing left will shrink the window’s width.
-# Pressing right will grow the window’s width.
-# Pressing up will shrink the window’s height.
-# Pressing down will grow the window’s height.
-	bindsym j resize shrink width 10 px or 10 ppt
-		bindsym k resize grow height 10 px or 10 ppt
-		bindsym l resize shrink height 10 px or 10 ppt
-		bindsym semicolon resize grow width 10 px or 10 ppt
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
-# same bindings, but for the arrow keys
-		bindsym Left resize shrink width 10 px or 10 ppt
-		bindsym Down resize grow height 10 px or 10 ppt
-		bindsym Up resize shrink height 10 px or 10 ppt
-		bindsym Right resize grow width 10 px or 10 ppt
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
-# back to normal: Enter or Escape
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -167,7 +168,7 @@ client.focused          $00ff00 #00ff00 #000000 #ff0000
 client.focused_inactive #00ff00 #000000 #00ff00 #000000
 client.unfocused        #00ff00 #000000 #00ff00 #000000
 client.urgent           #2f343a #900000 #ffffff #000000
-client.placeholder      #00ff00 #0c0c0c #ffffff #ff0000
+#client.placeholder      #00ff00 #0c0c0c #ffffff #ff0000
 
 client.background       #00ff00
 
@@ -184,17 +185,15 @@ bar {
 				active_workspace   #00ff00 #00ff00 #000000
 				inactive_workspace #00ff00 #000000 #00ff00
 				urgent_workspace   #2f343a #900000 #ffffff
-				binding_mode       #ff0000 #900000 #ffffff
+				#binding_mode       #ff0000 #900000 #ffffff
 		}
 	status_command i3status
-		tray_output primary
 }
 
 
 bindsym $mod+b exec --no-startup-id xdotool mousemove 1600 900
 
 focus_follows_mouse no
-
 
 # Startup Applications
 exec_always --no-startup-id feh --bg-scale ~/Pictures/debian_green_on_black.png
@@ -221,3 +220,4 @@ bindsym Print exec --no-startup-id amixer set Master 5%-
 bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%+
 bindsym Pause exec --no-startup-id amixer -D pulse set Master toggle
 
+exec --no-startup-id sh /home/delta/.screenlayout/kvm.sh | i3-msg restart

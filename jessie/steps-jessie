@@ -49,3 +49,10 @@ tmpfs  /var/log  tmpfs  defaults,noatime,nodiratime,size=10000000  0  0
 # Install list
 
 sudo apt-get install vim-nox git
+
+sudo apt-get install i3 lightdm light-locker
+sudo apt-get install feh
+
+sudo apt-get install xfce4-terminal
+
+sudo apt-get install x11-xserver-utils
