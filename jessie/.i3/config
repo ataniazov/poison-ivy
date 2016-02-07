@@ -220,4 +220,4 @@ bindsym Print exec --no-startup-id amixer set Master 5%-
 bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%+
 bindsym Pause exec --no-startup-id amixer -D pulse set Master toggle
 
-exec --no-startup-id sh /home/delta/.screenlayout/kvm.sh | i3-msg restart
+bindsym $mod+x exec --no-startup-id sh /home/delta/.screenlayout/kvm.sh | i3-msg restart
