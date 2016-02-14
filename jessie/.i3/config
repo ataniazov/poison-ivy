@@ -213,7 +213,8 @@ exec_always --no-startup-id setxkbmap -layout "us(dvorak),tr" -option "grp:alt_s
 
 
 # Application lunch Hot-Keys
-bindsym $mod+g exec --no-startup-id firefox --private-window
+#bindsym $mod+g exec --no-startup-id firefox --private-window
+bindsym $mod+g exec --no-startup-id /home/delta/apps/firefox/firefox --private-window
 bindsym $mod+Shift+g exec --no-startup-id chromium --incognito
 
 bindsym Print exec --no-startup-id amixer set Master 5%-
