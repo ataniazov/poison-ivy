@@ -48,9 +48,10 @@ bindsym $mod+d exec --no-startup-id dmenu_run -nb black -nf green -sb green -sf 
 
 # change focus
 bindsym $mod+j focus left
-bindsym $mod+k focus down
+bindsym $mod+k focus right
 bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+/ focus down
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -209,7 +210,7 @@ exec --no-startup-id wmname LG3D
 #
 #xmodmap -pm
 
-exec_always --no-startup-id setxkbmap -layout "us(dvorak),tr" -option "grp:alt_shift_toggle,grp_led:scroll" -option caps:hyper #-option compose:menu
+exec_always --no-startup-id setxkbmap -layout "us(dvorak-intl),tr" -option "grp:alt_shift_toggle,grp_led:scroll" -option caps:hyper #-option compose:menu
 
 
 # Application lunch Hot-Keys
