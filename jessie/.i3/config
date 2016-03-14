@@ -39,7 +39,7 @@ bindsym $mod+c exec i3-sensible-terminal
 bindsym $mod+minus kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb black -nf green -sb green -sf black
+bindsym $mod+d exec --no-startup-id dmenu_run -nb black -nf green -sb green -sf black -fn "-xos4-terminus-medium-r-*-*-14-*"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -202,7 +202,7 @@ exec --no-startup-id sleep 0.5 && (/usr/lib/policykit-1/polkitd & /usr/lib/polic
 
 exec --no-startup-id wmname LG3D
 
-#exec_always compton -f
+#exec_always compton -bcCGf
 
 # Keyboard Settings
 #xmodmap -e "remove lock = Caps_Lock"
