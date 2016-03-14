@@ -1,0 +1,32 @@
+// key <AD01> { [dead_acute, dead_diaeresis, apostrophe,        quotedbl ] };
+key <AD01> { [ apostrophe,  quotedbl,    dead_acute,   dead_diaeresis ] };
+
+// key <AD07> { [      g,   G               ]       };
+key <AD07> { [         g,          G,        gbreve,           Gbreve ] };
+
+// key <AD08> { [      c,          C,     copyright,             cent ] };
+key <AD08> { [         c,          C,      ccedilla,         Ccedilla ] };
+
+// key <AC02> { [      o,          O,        oacute,           Oacute ] };
+key <AC02> { [         o,          O,    odiaeresis,       Odiaeresis ] };
+
+// key <AC04> { [      u,          U,        uacute,           Uacute ] };
+key <AC04> { [         u,          U,    udiaeresis,       Udiaeresis ] };
+
+// key <AC05> { [      i,          I,        iacute,           Iacute ] };
+key <AC05> { [         i,          I,      idotless,        Iabovedot ] };
+
+// key <AC10> { [      s,          S,        ssharp,          section ] };
+key <AC10> { [         s,          S,      scedilla,         Scedilla ] };
+
+
+# Extra:
+
+//key <AD02> { [   comma,       less,      ccedilla,         Ccedilla ] };
+key <AD02> { [     comma,       less,     copyright,             cent ] };
+
+//key <AD04> { [       p,          P,    odiaeresis,       Odiaeresis ] };
+key <AD04> { [         p,          P,        oacute,           Oacute ] };
+
+// key <AB06> { [      b,	   B               ]       };
+key <AB06> { [         b,          B,        ssharp,          section ] };
