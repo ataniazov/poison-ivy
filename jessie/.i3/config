@@ -97,17 +97,29 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+o focus child
 
+# define workspace names
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace0 "10"
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace0
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -205,10 +217,10 @@ exec --no-startup-id wmname LG3D
 #exec_always compton -bcCGf
 
 # Keyboard Settings
-#xmodmap -e "remove lock = Caps_Lock"
-#xmodmap -e "keycode 66 = Super_L"
+#exec_always --no-startup-id xmodmap -e "remove lock = Caps_Lock"
+#exec_always --no-startup-id xmodmap -e "keycode 66 = Super_L"
 #
-#xmodmap -pm
+#exec_always --no-startup-id xmodmap -pm
 
 exec_always --no-startup-id setxkbmap -layout "us(dvorak-intl),tr" -option "grp:alt_shift_toggle,grp_led:scroll" -option caps:hyper #-option compose:menu
 
@@ -216,10 +228,18 @@ exec_always --no-startup-id setxkbmap -layout "us(dvorak-intl),tr" -option "grp:
 # Application lunch Hot-Keys
 #bindsym $mod+g exec --no-startup-id firefox --private-window
 bindsym $mod+g exec --no-startup-id /home/delta/apps/firefox/firefox --private-window
-bindsym $mod+Shift+g exec --no-startup-id chromium --incognito
+bindsym $mod+Shift+g exec --no-startup-id chromium --profile-directory="Profile 4" --incognito
 
+# Sound Controls with PRINT, SCROLL-LOCK & PAUSE keys
 bindsym Print exec --no-startup-id amixer set Master 5%-
 bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%+
 bindsym Pause exec --no-startup-id amixer -D pulse set Master toggle
 
-bindsym $mod+x exec --no-startup-id sh /home/delta/.screenlayout/kvm.sh | i3-msg restart
+# Multi-Monitor settings
+bindsym $mod+x exec --no-startup-id sh /home/delta/.screenlayout/multihead.sh | i3-msg restart
+
+# Start Spotify
+assign [class="^chromium-browser$" instance="^crx_kfbnhhcmmpmjfkkakaplojljcodkmobo$"] → $workspace2
+#exec --no-startup-id i3-msg 'workspace 2; exec chromium --kiosk --disable-extensions https://play.spotify.com/browse'
+exec --no-startup-id i3-msg 'workspace $workspace2; exec chromium --profile-directory="Profile 2" --start-fullscreen --app-id=kfbnhhcmmpmjfkkakaplojljcodkmobo'
+

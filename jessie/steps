@@ -96,15 +96,17 @@ sudo apt-get install p7zip-full p7zip-rar rar unrar zip unzip
 
 # Window Manager, locker & screensaver + background wallpaper utils
 sudo apt-get install i3 lightdm light-locker
-sudo apt-get install feh xdotool
-
-# Part of the xfce4:
-sudo apt-get install xfce4-terminal thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin
 
 # Graphics, Sound, Network, etc
 sudo apt-get install x11-xserver-utils
 sudo apt-get install pulseaudio alsa-utils 
 sudo apt-get install network-manager-gnome
+
+# misc
+sudo apt-get install feh xdotool
+
+# Part of the xfce4:
+sudo apt-get install xfce4-notifyd xfce4-terminal thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin
 
 # Fonts
 sudo apt-get install ttf-mscorefonts-installer ttf-xfree86-nonfree ttf-dejavu xfonts-terminus xfonts-terminus-oblique
