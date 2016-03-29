@@ -107,7 +107,7 @@ set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace0 "10"
+set $workspace0 "Spotify"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -131,7 +131,7 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+0 move container to workspace 0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -203,15 +203,18 @@ bar {
 	status_command i3status
 }
 
-
-bindsym $mod+b exec --no-startup-id xdotool mousemove 1600 900
-
 focus_follows_mouse no
+
+#bindsym $mod+z exec xkill -id $(xdotool getwindowfocus)
+bindsym $mod+Shift+minus exec xdotool getwindowfocus windowkill
+bindsym $mod+b exec --no-startup-id xdotool mousemove 1600 900
 
 # Startup Applications
 exec_always --no-startup-id feh --bg-scale ~/Pictures/debian_green_on_black.png
 exec --no-startup-id sleep 0.5 && (/usr/lib/policykit-1/polkitd & /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & xfsettingsd & xfce4-power-manager & light-locker & /usr/lib/i386-linux-gnu/indicator-power/indicator-power-service & start-pulseaudio-x11 & )
 
+# Redshift
+exec --no-startup-id redshift-gtk -c /home/delta/.config/redshift.conf
 exec --no-startup-id wmname LG3D
 
 #exec_always compton -bcCGf
@@ -224,12 +227,6 @@ exec --no-startup-id wmname LG3D
 
 exec_always --no-startup-id setxkbmap -layout "us(dvorak-intl),tr" -option "grp:alt_shift_toggle,grp_led:scroll" -option caps:hyper #-option compose:menu
 
-
-# Application lunch Hot-Keys
-#bindsym $mod+g exec --no-startup-id firefox --private-window
-bindsym $mod+g exec --no-startup-id /home/delta/apps/firefox/firefox --private-window
-bindsym $mod+Shift+g exec --no-startup-id chromium --profile-directory="Profile 4" --incognito
-
 # Sound Controls with PRINT, SCROLL-LOCK & PAUSE keys
 bindsym Print exec --no-startup-id amixer set Master 5%-
 bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%+
@@ -238,8 +235,20 @@ bindsym Pause exec --no-startup-id amixer -D pulse set Master toggle
 # Multi-Monitor settings
 bindsym $mod+x exec --no-startup-id sh /home/delta/.screenlayout/multihead.sh | i3-msg restart
 
-# Start Spotify
-assign [class="^chromium-browser$" instance="^crx_kfbnhhcmmpmjfkkakaplojljcodkmobo$"] → $workspace2
-#exec --no-startup-id i3-msg 'workspace 2; exec chromium --kiosk --disable-extensions https://play.spotify.com/browse'
-exec --no-startup-id i3-msg 'workspace $workspace2; exec chromium --profile-directory="Profile 2" --start-fullscreen --app-id=kfbnhhcmmpmjfkkakaplojljcodkmobo'
+# Application lunch Hot-Keys
+#bindsym $mod+g exec --no-startup-id firefox --private-window
+bindsym $mod+g exec --no-startup-id /home/delta/apps/firefox/firefox --private-window
 
+bindsym $mod+Shift+g exec --no-startup-id chromium --profile-directory="Default" --incognito
+#bindsym $mod+Shift+g exec --no-startup-id chromium-browser --profile-directory="Profile 1" --incognito
+
+# Start Spotify
+assign [class="^chromium$" instance="^crx_kfbnhhcmmpmjfkkakaplojljcodkmobo$"] → $workspace0
+#exec --no-startup-id i3-msg 'workspace 0; exec chromium --kiosk --disable-extensions https://play.spotify.com/browse'
+#exec --no-startup-id i3-msg 'workspace $workspace0; exec chromium --profile-directory="Profile 2" --start-fullscreen --app-id=kfbnhhcmmpmjfkkakaplojljcodkmobo'
+
+#bindsym $mod+Shift+m exec --no-startup-id chromium-browser --profile-directory="Profile 2" --start-fullscreen --app-id=kfbnhhcmmpmjfkkakaplojljcodkmobo
+bindsym $mod+Shift+m exec --no-startup-id chromium --profile-directory="Profile 2" --start-fullscreen --app-id=kfbnhhcmmpmjfkkakaplojljcodkmobo
+
+# QT Creator
+bindsym $mod+Shift+q exec --no-startup-id /home/delta/Qt/Tools/QtCreator/bin/qtcreator

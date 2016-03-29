@@ -103,7 +103,7 @@ sudo apt-get install pulseaudio alsa-utils
 sudo apt-get install network-manager-gnome
 
 # misc
-sudo apt-get install feh xdotool
+sudo apt-get install feh xdotool redshift gtk-redshift
 
 # Part of the xfce4:
 sudo apt-get install xfce4-notifyd xfce4-terminal thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin
