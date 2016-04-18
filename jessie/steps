@@ -106,7 +106,7 @@ sudo apt-get install network-manager-gnome
 sudo apt-get install feh xdotool redshift gtk-redshift
 
 # Part of the xfce4:
-sudo apt-get install xfce4-notifyd xfce4-terminal thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin
+sudo apt-get install xfce4-settings xfce4-notifyd xfce4-terminal thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin
 
 # Fonts
 sudo apt-get install ttf-mscorefonts-installer ttf-xfree86-nonfree ttf-dejavu xfonts-terminus xfonts-terminus-oblique
@@ -125,6 +125,10 @@ sudo apt-get install zathura zathura-djvu zathura-pdf-poppler mupdf
 
 # or user-friendly pdf reader
 sudo apt-get install evince (evince-gtk)
+
+# Themes
+
+sudo apt-get install gtk2-engines-murrine gtk2-engines-pixbuf 
 
 #6. Remove list
 
