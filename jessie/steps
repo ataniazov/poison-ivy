@@ -127,8 +127,11 @@ sudo apt-get install zathura zathura-djvu zathura-pdf-poppler mupdf
 sudo apt-get install evince (evince-gtk)
 
 # Themes
-
 sudo apt-get install gtk2-engines-murrine gtk2-engines-pixbuf 
+
+# JAVA
+
+# docker
 
 #6. Remove list
 
