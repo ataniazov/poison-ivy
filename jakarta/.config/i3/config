@@ -14,8 +14,6 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
-#font pango:Terminus 11px
-#font pango:DejaVu Sans Mono 8
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -33,13 +31,14 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+c exec i3-sensible-terminal
+bindsym $mod+c exec gnome-terminal
 
 # kill focused window
+#bindsym $mod+Shift+q kill
 bindsym $mod+minus kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb black -nf green -sb green -sf black -fn "-xos4-terminus-medium-r-*-*-14-*"
+bindsym $mod+d exec --no-startup-id dmenu_run -nb black -nf green -sb green -sf black
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -63,7 +62,8 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+slash move right
+#bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -78,7 +78,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -107,7 +107,8 @@ set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace0 "Spotify"
+set $workspace0 "0"
+
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -131,7 +132,7 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace Spotify
+bindsym $mod+Shift+0 move container to workspace 0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -167,21 +168,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Style Settings
-
-set $poison-green #00ff00
-set $deep-dark #000000
-
-#new_window pixel
-new_float normal 
-hide_edge_borders none
-
 # class                 border  backgr. text    indicator
 client.focused          #00ff00 #00ff00 #000000 #ff0000
 client.focused_inactive #00ff00 #000000 #00ff00 #000000
 client.unfocused        #00ff00 #000000 #00ff00 #000000
 client.urgent           #2f343a #900000 #ffffff #000000
-#client.placeholder      #00ff00 #0c0c0c #ffffff #ff0000
+client.placeholder      #00ff00 #0c0c0c #ffffff #ff0000
 
 client.background       #00ff00
 
@@ -189,20 +181,25 @@ client.background       #00ff00
 # finds out, if available)
 bar {
 	position top
-		colors {
-			background #000000
-				statusline #ffffff
-				separator #00ff00
+	colors {
+                background #000000
+                statusline #ffffff
+                separator #00ff00
 
-				focused_workspace  #00ff00 #00ff00 #000000
-				active_workspace   #00ff00 #00ff00 #000000
-				inactive_workspace #00ff00 #000000 #00ff00
-				urgent_workspace   #2f343a #900000 #ffffff
-				#binding_mode       #ff0000 #900000 #ffffff
-		}
-	status_command i3status
+                focused_workspace  #00ff00 #00ff00 #000000
+                active_workspace   #00ff00 #00ff00 #000000
+                inactive_workspace #00ff00 #000000 #00ff00
+                urgent_workspace   #2f343a #900000 #ffffff
+                binding_mode       #ff0000 #900000 #ffffff
+        }
+
+        status_command i3status
+        tray_output primary
 }
 
+#new_window pixel
+new_float normal
+hide_edge_borders none
 focus_follows_mouse no
 
 #bindsym $mod+z exec xkill -id $(xdotool getwindowfocus)
@@ -211,19 +208,9 @@ bindsym $mod+b exec --no-startup-id xdotool mousemove 1600 900
 
 # Startup Applications
 exec_always --no-startup-id feh --bg-scale ~/Pictures/debian_green_on_black.png
-exec --no-startup-id sleep 0.5 && (/usr/lib/policykit-1/polkitd & /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & xfsettingsd & xfce4-power-manager & light-locker & /usr/lib/i386-linux-gnu/indicator-power/indicator-power-service & start-pulseaudio-x11 & )
 
 # Redshift
 exec --no-startup-id redshift-gtk -c /home/delta/.config/redshift.conf
-exec --no-startup-id wmname LG3D
-
-#exec_always compton -bcCGf
-
-# Keyboard Settings
-#exec_always --no-startup-id xmodmap -e "remove lock = Caps_Lock"
-#exec_always --no-startup-id xmodmap -e "keycode 66 = Super_L"
-#
-#exec_always --no-startup-id xmodmap -pm
 
 exec_always --no-startup-id setxkbmap -layout "us(dvorak-intl),tr" -option "grp:alt_shift_toggle,grp_led:scroll" -option caps:hyper #-option compose:menu
 
@@ -232,26 +219,9 @@ bindsym Print exec --no-startup-id amixer set Master 5%-
 bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%+
 bindsym Pause exec --no-startup-id amixer -D pulse set Master toggle
 
-# Multi-Monitor settings
-#bindsym $mod+x exec --no-startup-id sh /home/delta/.screenlayout/multihead.sh | i3-msg restart
-
-# Fast ScreenShot
-bindsym $mod+x exec --no-startup-id xfce4-screenshooter -w -s /home/delta/Pictures/
-
 # Application lunch Hot-Keys
-#bindsym $mod+g exec --no-startup-id firefox --private-window
-bindsym $mod+g exec --no-startup-id /home/delta/apps/firefox/firefox --private-window
-
+bindsym $mod+g exec --no-startup-id firefox --private-window
 bindsym $mod+Shift+g exec --no-startup-id chromium --profile-directory="Default" --incognito
-#bindsym $mod+Shift+g exec --no-startup-id chromium-browser --profile-directory="Profile 1" --incognito
-
-# Start Spotify
-assign [class="^chromium$" instance="^crx_kfbnhhcmmpmjfkkakaplojljcodkmobo$"] → $workspace0
-#exec --no-startup-id i3-msg 'workspace 0; exec chromium --kiosk --disable-extensions https://play.spotify.com/browse'
-#exec --no-startup-id i3-msg 'workspace $workspace0; exec chromium --profile-directory="Profile 2" --start-fullscreen --app-id=kfbnhhcmmpmjfkkakaplojljcodkmobo'
-
-#bindsym $mod+Shift+m exec --no-startup-id chromium-browser --profile-directory="Profile 2" --start-fullscreen --app-id=kfbnhhcmmpmjfkkakaplojljcodkmobo
-bindsym $mod+Shift+m exec --no-startup-id chromium --profile-directory="Profile 2" --start-fullscreen --app-id=kfbnhhcmmpmjfkkakaplojljcodkmobo
 
 # QT Creator
 bindsym $mod+Shift+q exec --no-startup-id /home/delta/Qt/Tools/QtCreator/bin/qtcreator
