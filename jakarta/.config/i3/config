@@ -214,14 +214,18 @@ exec --no-startup-id redshift-gtk -c /home/delta/.config/redshift.conf
 
 exec_always --no-startup-id setxkbmap -layout "us(dvorak-intl),tr" -option "grp:alt_shift_toggle,grp_led:scroll" -option caps:hyper #-option compose:menu
 
-# Sound Controls with PRINT, SCROLL-LOCK & PAUSE keys
+# Sound control keys
 bindsym Print exec --no-startup-id amixer set Master 5%-
 bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%+
 bindsym Pause exec --no-startup-id amixer -D pulse set Master toggle
+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master toggle
 
 # Application lunch Hot-Keys
 bindsym $mod+g exec --no-startup-id firefox --private-window
 bindsym $mod+Shift+g exec --no-startup-id chromium --profile-directory="Default" --incognito
 
-# QT Creator
-bindsym $mod+Shift+q exec --no-startup-id /home/delta/Qt/Tools/QtCreator/bin/qtcreator
+# IntelliJ IDEA
+bindsym $mod+Shift+i exec --no-startup-id idea
