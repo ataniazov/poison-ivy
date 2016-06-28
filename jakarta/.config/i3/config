@@ -207,7 +207,7 @@ bindsym $mod+Shift+minus exec xdotool getwindowfocus windowkill
 bindsym $mod+b exec --no-startup-id xdotool mousemove 1600 900
 
 # Startup Applications
-exec_always --no-startup-id feh --bg-scale ~/Pictures/debian_green_on_black.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/java_logo-1366x768.png
 
 # Redshift
 exec --no-startup-id redshift-gtk -c /home/delta/.config/redshift.conf
