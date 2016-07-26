@@ -13,8 +13,8 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:monospace 8
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:monospace 8
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -31,15 +31,16 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+c exec gnome-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+c exec i3-sensible-terminal
 
 # kill focused window
 #bindsym $mod+Shift+q kill
 bindsym $mod+minus kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb \#3c261d -nf \#dad0cf -sb \#dad0cf -sf \#3c261d
-
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -nb \#3d261e -nf \#d9d0d0 -sb \#d9d0d0 -sf \#3d261e
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -47,10 +48,11 @@ bindsym $mod+d exec --no-startup-id dmenu_run -nb \#3c261d -nf \#dad0cf -sb \#da
 
 # change focus
 bindsym $mod+j focus left
+#bindsym $mod+k focus down
 bindsym $mod+k focus right
 bindsym $mod+l focus up
-bindsym $mod+slash focus down
 #bindsym $mod+semicolon focus right
+bindsym $mod+slash focus down
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -62,8 +64,8 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+slash move right
 #bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+slash move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -82,6 +84,8 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 bindsym $mod+t layout tabbed
 bindsym $mod+n layout toggle split
 
@@ -95,6 +99,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
+#bindsym $mod+d focus child
 bindsym $mod+o focus child
 
 # define workspace names
@@ -169,30 +174,29 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # class                 border  backgr. text    indicator
-client.focused          #3c261d #3c261d #ffffff #815142
-client.focused_inactive #815142 #815142 #3c261d #000000
-client.unfocused        #815142 #815142 #dad0cf #000000
+client.focused          #3d261e #3d261e #ffffff #805141
+client.focused_inactive #805141 #805141 #3d261e #000000
+client.unfocused        #805141 #805141 #d9d0d0 #000000
 client.urgent           #2f343a #900000 #ffffff #000000
-client.placeholder      #00ff00 #0c0c0c #ffffff #815142
+client.placeholder      #00ff00 #0c0c0c #ffffff #805141
 
-client.background       #3c261d
+client.background       #3d261e
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
 	position top
 	colors {
-                background #3c261d
+                background #3d261e
                 statusline #ffffff
-                separator #815142
+                separator #805141
 
-                focused_workspace  #dad0cf #dad0cf #3c261d
-                active_workspace   #dad0cf #3c261d #dad0cf
-                inactive_workspace #dad0cf #3c261d #dad0cf
+                focused_workspace  #d9d0d0 #d9d0d0 #3d261e
+                active_workspace   #d9d0d0 #3d261e #d9d0d0
+                inactive_workspace #d9d0d0 #3d261e #d9d0d0
                 urgent_workspace   #2f343a #900000 #ffffff
                 binding_mode       #ff0000 #900000 #ffffff
         }
-
         status_command i3status
         tray_output primary
 }
@@ -201,6 +205,14 @@ bar {
 new_float normal
 hide_edge_borders none
 focus_follows_mouse no
+
+exec --no-startup-id xfsettingsd
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id start-pulseaudio-x11
+exec --no-startup-id light-locker
+exec --no-startup-id update-notifier 
+exec --no-startup-id xfce4-volumed
 
 #bindsym $mod+z exec xkill -id $(xdotool getwindowfocus)
 bindsym $mod+Shift+minus exec xdotool getwindowfocus windowkill
@@ -221,9 +233,9 @@ bindsym Print exec --no-startup-id amixer set Master 5%-
 bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%+
 bindsym Pause exec --no-startup-id amixer -D pulse set Master toggle
 
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master toggle
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
+#bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master toggle
 
 # Application lunch Hot-Keys
 bindsym $mod+g exec --no-startup-id firefox --private-window
