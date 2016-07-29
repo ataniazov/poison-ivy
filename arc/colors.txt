@@ -1,0 +1,33 @@
+Arc colors:
+
+sky blue	#5294E2
+graphite	#5C616C
+space gray	#383C4A
+white		#F5F6F7
+silver		#D3DAE3
+silver2		#F1F1F1
+
+
+items:
+panel		#2B2E37
+window		#E7E8EB
+selection	#4084D6
+side pane	#353945
+tick		#5294E2
+red		#F46067
+folder		#90BBED
+selected folder	#A9DCFF
+
+telegram	#2CA5E0
+
+selected text	#7081B2
+unselected text	#979DAC
+
+
+
+Greybird colors:
+silver		#CECECE
+graphite	#3C3C3C
+blue		#398EE7
+
+asphalt		#131926
